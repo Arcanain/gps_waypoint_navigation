@@ -17,7 +17,7 @@ find_package(catkin REQUIRED
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES gps_waypoint_navigation
-#  CATKIN_DEPENDS other_catkin_pkg
+   CATKIN_DEPENDS tf
 #  DEPENDS system_lib
 )
 

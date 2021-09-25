@@ -1,4 +1,10 @@
 <launch>
+    <!-- /base_link -> /utm　の静的座標変換を定義すると以下の[WARN]は消えた
+	[ WARN] [1632577696.668425335]: "utm" passed to lookupTransform argument source_frame does not exist. 
+	本当にこの変換で良いかはかなり疑問(おそらく間違い)
+	-->
+    <node pkg="tf" type="static_transform_publisher" name="robot_to_sensor" args="0 0 0 0 0 0 /base_link /utm 100" />
+	
 	<node ns="/gps_waypoint_navigation" pkg="gps_waypoint_navigation" type="gps_waypoint" name="gps_waypoint" output="screen" />
 		<param name="/gps_waypoint_navigation/coordinates_file" value="/waypoint_files/points_outdoor.txt" type="string" />
 </launch>
