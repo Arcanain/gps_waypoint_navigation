@@ -25,3 +25,6 @@ include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
 )
+
+add_executable(gps_waypoint src/gps_waypoint.cpp)
+target_link_libraries(gps_waypoint ${catkin_LIBRARIES})
