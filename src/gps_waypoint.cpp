@@ -25,7 +25,7 @@ std::string path_local, path_abs;
 
 
 int countWaypointsInFile(std::string path_local){
-    path_abs = ros::package::getPath("aigo_waypoint") + path_local;
+    path_abs = ros::package::getPath("gps_waypoint_navigation") + path_local;
     std::ifstream fileCount(path_abs.c_str());
     if(fileCount.is_open())
     {
@@ -51,7 +51,7 @@ int countWaypointsInFile(std::string path_local){
 std::vector <std::pair<double, double>> getWaypoints(std::string path_local){
     double lati = 0, longi = 0;
 
-    path_abs = ros::package::getPath("aigo_waypoint") + path_local;
+    path_abs = ros::package::getPath("gps_waypoint_navigation") + path_local;
     std::ifstream fileRead(path_abs.c_str());
     for(int i = 0; i < numWaypoints; i++)
     {
@@ -158,7 +158,7 @@ int main(int argc, char** argv)
     //Setting true is telling the constructor to start ros::spin()
 
     // Initiate publisher to send end of node message
-    ros::Publisher pubWaypointNodeEnded = n.advertise<std_msgs::Bool>("/aigo_waypoint/waypoint_following_status", 100);
+    ros::Publisher pubWaypointNodeEnded = n.advertise<std_msgs::Bool>("/gps_waypoint_navigation/waypoint_following_status", 100);
 
     //wait for the action server to come up
     while(!ac.waitForServer(ros::Duration(5.0)))
@@ -179,7 +179,7 @@ int main(int argc, char** argv)
     //Get Longitude and Latitude goals from text file
 
     //Count number of waypoints
-    ros::param::get("/aigo_waypoint/coordinates_file", path_local);
+    ros::param::get("/gps_waypoint_navigation/coordinates_file", path_local);
     numWaypoints = countWaypointsInFile(path_local);
 
     //Reading waypoints from text file and output results
