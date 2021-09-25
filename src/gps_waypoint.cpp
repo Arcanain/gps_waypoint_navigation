@@ -216,9 +216,15 @@ int main(int argc, char** argv)
         UTM_point = latLongtoUTM(latiGoal, longiGoal);
         UTM_next = latLongtoUTM(latiNext, longiNext);
 
+        ROS_INFO("Received Latitude UTM goal:%.8f", UTM_point.point.x);
+        ROS_INFO("Received longitude UTM goal:%.8f", UTM_point.point.y);
+
         //Transform UTM to map point in odom frame
         map_point = UTMtoMapPoint(UTM_point);
         map_next = UTMtoMapPoint(UTM_next);
+        
+        ROS_INFO("Received Latitude map goal:%.8f", map_point.point.x);
+        ROS_INFO("Received longitude map goal:%.8f", map_point.point.y);
 
         //Build goal to send to move_base
         move_base_msgs::MoveBaseGoal goal = buildGoal(map_point, map_next, final_point); //initiate a move_base_msg called goal
